@@ -1,0 +1,32 @@
+mages p {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 20%;
+  left: 0;
+}
+h1{
+  color:red;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+body{
+  background-color: black;
+}
+h2{
+  color: white;
+  text-align: center;
+}
+img{
+  height: 300px;
+  width: 400px;
+  position: relative;
+  display: block;
+  margin: auto;
+  top: 40px;
+}
+p{
+  color: white;
+}
+
