@@ -1,8 +1,24 @@
-mages p {
-  position: absolute;
+.dropbtn{
+  background-color: white;
+  color: red;
+  padding: 12px;
+  font-size: 16px;
+  border: solid;
+  cursor: pointer;
+}
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    left:40%;
+}
+.dropbtn:hover {
+    background-color: red;
+}
+  p {
+  position: relative;
   width: 100%;
   text-align: center;
-  bottom: 20%;
+  bottom: -75px;
   left: 0;
 }
 h1{
@@ -27,6 +43,8 @@ img{
   top: 40px;
 }
 p{
+  margin: auto;
   color: white;
+  position: relative;
 }
 
