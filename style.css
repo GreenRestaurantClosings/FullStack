@@ -5,12 +5,15 @@
   font-size: 16px;
   border: solid;
   cursor: pointer;
+    width: 200px;
 }
 
 .dropdown {
- position: absolute;
+ position: relative;
   display: inline-block;
-  left: 40%;
+  top: calc(70%);
+left: calc(50% - 100px);
+    
 }
 
 .dropbtn:hover {
@@ -23,8 +26,7 @@ p {
   text-align: center;
   bottom: -75px;
   left: 0;
-color: white;
-background-color: #d3d3d3;
+color: #d3d3d3;  
 margin: auto;
 }
 
@@ -51,7 +53,6 @@ font-family: 'Nobile';
 }
 
 img {
-r: #8b8989;
   font-size: 20px;
   text-align: center;
 text-shadow: 1px 1px 1px #ccc;
@@ -79,7 +80,6 @@ img {
   display: block;
   margin: auto;
   top: 40px;
-
   height: auto;
   width: auto;
   position: relative;
