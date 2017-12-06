@@ -1,3 +1,76 @@
-html, body {
-	height: 100%;
+#background {
+background:url("http://davidkunzman.net/photographyUploads/p94.jpg") no-repeat 50% 50% fixed;
+background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+-webkit-background-size: cover;
+}
+.container{
+    position: absolute;
+    left:0%;
+    width: 200px;
+}
+.container img{
+    width: 80%;
+    height: full;
+}
+.mySearch{
+position: absolute;
+left: calc(50% - 250px);
+width: 500px;
+top: 50%;
+height: auto;
+box-shadow: 3px, 2px, 2px, #FFFFFF;
+}
+
+h1 {
+    position: relative;
+    top: 35%;
+  color: #FFFF33;
+  font-size: 50px;
+  text-align: center;
+text-shadow: 2px 2px 2px #FFFFFF;
+font-family: 'Nobile';
+  font-style: normal;
+  font-weight: 700;
+}
+
+body {
+  background-color: #f9f9eb;
+background: #f5f5f5;
+background-image: "https://www.countdown-x.com/proxy/project_udpates/87/00000987/prj_update-548a52459d5fd-l.jpg"; 
+}
+h3{
+    position: relative;
+    color: white;
+    text-align: center;
+    top:55%;
+}
+h2{
+    color: white;
+    position: relative;
+    text-align: center;
+    top: 20%;
+    font-size: 50px;
+}
+.us img{
+    position: relative;
+    border-radius: 50%;
+    height: 20%;
+    width: 10%;
+}
+.us{
+    position: relative;
+    top: 20%;
+}
+figure{
+ display: inline;
+text-align: center;
+    position: relative;
+}
+figcaption{
+    position: relative;
+    color: white;
+    display: inline;
+    text-align: center;
 }
