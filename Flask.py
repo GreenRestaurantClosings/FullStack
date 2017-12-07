@@ -2,6 +2,7 @@ import random
 from flask import Flask, request, Response, json
 import pyrebase
 app = Flask(__name__, static_url_path='')
+app.config.from_pyfile('settings.py')
 
 # set DEBUG so you can see errors in your console
 app.config['DEBUG'] = True
@@ -27,7 +28,7 @@ def query():
 
 # Just a sample data set. Feel free to use something else!
 config = {}
-with open("configs.txt") as configs:
+with open(r"C:\Users\Kieran\FullStack\configs.txt") as configs:
         data = json.load(configs)
         config = data["config"]
 firebase = pyrebase.initialize_app(config)
