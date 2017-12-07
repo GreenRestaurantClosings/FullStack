@@ -1,11 +1,14 @@
 import random
 from flask import Flask, request, Response, json
-from pyrebase import pyrebase
+import pyrebase
+
 app = Flask(__name__, static_url_path='')
 
 # set DEBUG so you can see errors in your console
 app.config['DEBUG'] = True
+
 restaurants = []
+
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
