@@ -1,6 +1,6 @@
 import random
 from flask import Flask, request, Response, json
-from pyrebase import pyrebase
+import pyrebase
 app = Flask(__name__, static_url_path='')
 
 # set DEBUG so you can see errors in your console
@@ -10,7 +10,7 @@ restaurants = []
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+	return app.send_static_file('index.html')
 
 @app.route('/query', methods=['POST'])
 def query():
@@ -35,8 +35,6 @@ db = firebase.database()
 restaurant_names = db.child("Restaurants").get()
 for rest in restaurant_names.each():
     restaurants.append(rest.val()["Restaurant Name"])
-
-
 
 def getNames():
     # This picks a random element from the mixmaxFeatures array regardless of input
