@@ -1,6 +1,7 @@
 // Just a bit of code to get you started. Feel free to modify!
-
+console.log("website running");
 $('input').on('input', function() {
+    console.log("hello");
   $.ajax({
     method: 'post',
     url: '/query',
@@ -34,6 +35,7 @@ $('input').on("keyup", function(e) {
       .success(function(results) {
         $('.results').empty();
 
+        
         results.forEach(function(result) {
           var li = $('<li>').text(result);
           $('.results').append(li);

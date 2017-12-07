@@ -1,16 +1,18 @@
 import random
 from flask import Flask, request, Response, json
+from pyrebase import pyrebase
 app = Flask(__name__, static_url_path='')
 
 # set DEBUG so you can see errors in your console
 app.config['DEBUG'] = True
-
+restaurants = []
 @app.route('/')
 def index():
-	return app.send_static_file('index.html')
+    return app.send_static_file('index.html')
 
 @app.route('/query', methods=['POST'])
 def query():
+    print("hello I am working")
     body = request.get_json(force = True)
     print(body)
     query = body["query"]
@@ -34,8 +36,6 @@ for rest in restaurant_names.each():
     restaurants.append(rest.val()["Restaurant Name"])
 
 def getNames():
-    # This picks a random element from the mixmaxFeatures array regardless of input
-    # TODO Replace this with your autocomplete function
     result = []
     restaurant_names = db.child("Restaurants").get()
     for rest in restaurant_names.each():
@@ -98,27 +98,6 @@ def edit_distance(s1, s2):
 
     return m[len(s1)][len(s2)]
 
-'''
-def ngrams(n, string):
-    ngrams = set()
-    start = 0
-    end = start + n
-    while end <= len(string):
-        ngrams.add(string[start:end])
-        start+=1
-        end+=1
-    return ngrams
-
-#jaccard coefficient for n-grams of two words
-def jaccard(n, string1, string2):
-    ngram1 = ngrams(n, string1)
-    ngram2 = ngrams(n, string2)
-
-    intersection_size = len(ngram1 & ngram2)
-    union_size = len(ngram1 | ngram2)
-
-    return intersection_size / float(union_size)
-'''
 
 def prefixOfWord(word, options):
 	# Loop through all the words in options

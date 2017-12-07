@@ -74,3 +74,15 @@ figcaption{
     display: inline;
     text-align: center;
 }
+
+.content {
+    padding: 10px;
+    position: relative;
+    align-self: center;
+    top: 45%;
+    margin-left: 30%;
+    width: 420px;
+    height:auto;
+    overflow:auto;
+    background: white;
+}
