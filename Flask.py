@@ -1,6 +1,8 @@
 import random
 from flask import Flask, request, Response, json
 import pyrebase
+import numpy as np
+from sklearn import linear_model
 
 app = Flask(__name__, static_url_path='')
 
@@ -8,6 +10,7 @@ app = Flask(__name__, static_url_path='')
 app.config['DEBUG'] = True
 
 restaurants = []
+logisticData = []
 
 @app.route('/')
 def index():
@@ -37,6 +40,40 @@ db = firebase.database()
 restaurant_names = db.child("Restaurants").get()
 for rest in restaurant_names.each():
     restaurants.append(rest.val()["Restaurant Name"])
+    logisticData.append(rest.val())
+a = np.zeros((len(logisticData), 4))
+b = np.zeros((len(logisticData), 1))
+
+for element in range(len(logisticData)):
+    TAnumReviews = -1
+    TARating = -1
+    YelpRating = -1
+    YelpReviews = -1
+    if("Closed" in logisticData[element] and logisticData[element]["Closed"]):
+        b[element] = 1
+    if("Trip Advisor Number of Reviews" in logisticData[element]):
+        temp = logisticData[element]["Trip Advisor Number of Reviews"].split(" ")
+        TAnumReviews = int(temp[0])
+    if("Trip Advisor Rating" in logisticData[element]):
+        temp2 = logisticData[element]["Trip Advisor Rating"].split(" ")
+        TARating = float(temp2[0])
+    if("Yelp Rating" in logisticData[element]):
+        YelpRating = logisticData[element]["Yelp Rating"]
+    if("YelpNumReviews" in logisticData[element]):
+        YNumReviews = logisticData[element]["YelpNumReviews"]
+    
+    a[element] = [TAnumReviews, TARating, YelpRating, YNumReviews]
+
+logreg = linear_model.LogisticRegression()
+#print(np.shape(a), np.shape(b))
+logreg.fit(a, b)
+#print(logreg.predict_proba(a[66, :].reshape(1,-1)), logisticData[66]["Restaurant Name"])
+
+for i in range(len(logisticData)):
+    try:
+        print(logreg.predict_proba(a[i, :].reshape(1,-1)), logisticData[i]["Restaurant Name"])
+    except:
+        print("ouch")
 
 def getNames():
     result = []
