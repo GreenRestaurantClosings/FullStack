@@ -1,5 +1,5 @@
 #background {
-background:url("/static/src/backgroundIMG.png") no-repeat 50% 50% fixed;
+background:url("src/backgroundIMG.png") no-repeat 50% 50% fixed;
 background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -70,4 +70,13 @@ figure{
 text-align: center;
     position: relative;
 }
-
+.content{
+    position: relative;
+    align-self: center;
+    top:45%;
+    margin-left: 30%;
+    width:420px;
+    height: auto;
+    overflow: auto;
+    background: white;
+}

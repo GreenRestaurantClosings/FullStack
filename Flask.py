@@ -4,7 +4,7 @@ import pyrebase
 import numpy as np
 from sklearn import linear_model
 
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__, static_url_path='/static')
 
 # set DEBUG so you can see errors in your console
 app.config['DEBUG'] = True
@@ -15,6 +15,12 @@ logisticData = []
 @app.route('/')
 def root():
     return app.send_static_file('index.html')
+
+
+@app.route('/aboutUs')
+def aboutUs():
+    return app.send_static_file('aboutUs.html')
+
 
 @app.route('/query', methods=['POST'])
 def query():
@@ -48,7 +54,7 @@ for element in range(len(logisticData)):
     TAnumReviews = -1
     TARating = -1
     YelpRating = -1
-    YelpReviews = -1
+    YNumReviews = -1
     if("Closed" in logisticData[element] and logisticData[element]["Closed"]):
         b[element] = 1
     if("Trip Advisor Number of Reviews" in logisticData[element]):
