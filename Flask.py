@@ -81,8 +81,8 @@ def query():
 	submitted = body["submitted"]
 	data = None
 	if submitted:
-		#print("search")
-		data = json.dumps(search(query))  + json.dumps(autocomplete(query))
+		print("search")
+		data = json.dumps(search(query) + autocomplete(query))
 	else:
 		#print(autocomplete(query))
 		data = json.dumps(autocomplete(query))
@@ -119,37 +119,40 @@ def prefixOfWord(word, options):
 
 def search(query):
     #threshold = 2
-    result = []
-    for options in restaurants:
-        if len(query) > len(options):
-            continue
-        if substring_edit_distance(query.lower(), options["name"].lower()):
-            result.append(options)
-    return result
+	result = []
+	for options in restaurants:
+		if len(query) < len(options):
+			break
+		separate = options["name"].split("\n")
+		for word in separate:
+			if substring_edit_distance(query.lower(), word) == True:
+				result.append(options)
+	print(result)
+	return result
 
 def substring_edit_distance(word1, word2):
-    threshold = 2
-    for i in range(len(word2) - len(word1) + 1):
-        #print(word2[i:i + (len(word1))])
-        if edit_distance(word1, word2[i:i + (len(word1))]) < threshold:
-            return True
-    return False
+	threshold = 2
+	for i in range(len(word2) - len(word1) + 1):
+		print(word2[i:i + (len(word1))])
+		if edit_distance(word1, word2[i:i + (len(word1))]) < threshold:
+			return True
+	return False
 
 def edit_distance(s1, s2):
-    m = []
-    m.append([0])
+	m = []
+	m.append([0])
 
-    for i in range(1, len(s1) + 1):
-        m.append([i])
+	for i in range(1, len(s1) + 1):
+		m.append([i])
 
-    for j in range(1, len(s2) + 1):
-        m[0].append(j)
+	for j in range(1, len(s2) + 1):
+		m[0].append(j)
 
-    for i in range(1, len(s1) + 1):
-        for j in range(1, len(s2) + 1):
-            m[i].append(min(m[i-1][j-1] if (s1[i-1] == s2[j-1]) else (m[i-1][j-1] + 1), m[i-1][j] + 1, m[i][j-1] + 1))
-
-    return m[len(s1)][len(s2)]
+	for i in range(1, len(s1) + 1):
+		for j in range(1, len(s2) + 1):
+			m[i].append(min(m[i-1][j-1] if (s1[i-1] == s2[j-1]) else (m[i-1][j-1] + 1), m[i-1][j] + 1, m[i][j-1] + 1))
+	print(m[len(s1)][len(s2)])
+	return m[len(s1)][len(s2)]
 
 
 if __name__ == '__main__':

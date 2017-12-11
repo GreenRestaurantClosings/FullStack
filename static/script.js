@@ -14,7 +14,7 @@ $('input').on('input', function() {
       $('.results').empty();
 
       results.forEach(function(result) {
-        var li = $('<li>').text(result.name + " " + result.score);
+        var li = $('<p>').text(result.name + " " + result.score);
         $('.results').append(li);
       });
     });
@@ -36,7 +36,7 @@ $('input').on("keyup", function(e) {
 
 
         results.forEach(function(results) {
-          var li = $('<li>').text(results.name + " " + results.score);
+          var li = $('<p>').text(results.name + " " + results.score);
           $('.results').append(li);
         });
       });
