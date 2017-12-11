@@ -12,33 +12,7 @@ app.config['DEBUG'] = True
 restaurants = []
 logisticData = []
 
-<<<<<<< HEAD
-@app.route('/')
-def root():
-    return app.send_static_file('index.html')
 
-
-@app.route('/aboutUs')
-def aboutUs():
-    return app.send_static_file('aboutUs.html')
-
-
-@app.route('/query', methods=['POST'])
-def query():
-    print("hello I am working")
-    body = request.get_json(force = True)
-    print(body)
-    query = body["query"]
-    submitted = body["submitted"]
-    data = None
-    if submitted == True:
-        data = json.dumps(search(query))
-    else:
-        data = json.dumps(autocomplete(query))
-    return Response(data, status=200, mimetype='application/json')
-
-=======
->>>>>>> d7686d7446661021c9e086aa582a094066adcb04
 # Just a sample data set. Feel free to use something else!
 config = {}
 with open("configs.txt") as configs:
@@ -95,6 +69,10 @@ print(restaurants)
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
+
+@app.route('/aboutUs')
+def aboutUs():
+    return app.send_static_file('aboutUs.html')
 
 @app.route('/query', methods=['POST'])
 def query():
