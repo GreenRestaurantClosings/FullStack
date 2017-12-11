@@ -1,4 +1,4 @@
-// Just a bit of code to get you started. Feel free to modify!
+//autocomplete function while typing
 console.log("website running");
 $('input').on('input', function() {
   $.ajax({
@@ -20,6 +20,7 @@ $('input').on('input', function() {
     });
 });
 
+//search function after pressing 'enter'
 $('input').on("keyup", function(e) {
   if (e.keyCode == 13) {
     $.ajax({
