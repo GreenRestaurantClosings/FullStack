@@ -50,8 +50,8 @@ for element in range(len(logisticData)):
 
 logreg = linear_model.LogisticRegression()
 logreg.fit(a, b)
-print(logreg.predict_proba(a[1, :].reshape(1,-1))[0,1])
-print(logisticData[1]["Restaurant Name"])
+#print(logreg.predict_proba(a[1, :].reshape(1,-1))[0,1])
+#print(logisticData[1]["Restaurant Name"])
 
 for i in range(len(logisticData)):
 	if type(logisticData[i]["Restaurant Name"]) == str:
@@ -64,7 +64,7 @@ def takeScore(elem):
 
 restaurants = sorted(restaurants, key=takeScore, reverse = True)
 
-print(restaurants)
+#print(restaurants)
 
 @app.route('/')
 def index():
@@ -81,10 +81,10 @@ def query():
 	submitted = body["submitted"]
 	data = None
 	if submitted:
-		print("search")
+		#print("search")
 		data = json.dumps(search(query))  + json.dumps(autocomplete(query))
 	else:
-		print(autocomplete(query))
+		#print(autocomplete(query))
 		data = json.dumps(autocomplete(query))
 	return Response(data, status=200, mimetype='application/json')
 
@@ -130,7 +130,7 @@ def search(query):
 def substring_edit_distance(word1, word2):
     threshold = 2
     for i in range(len(word2) - len(word1) + 1):
-        print(word2[i:i + (len(word1))])
+        #print(word2[i:i + (len(word1))])
         if edit_distance(word1, word2[i:i + (len(word1))]) < threshold:
             return True
     return False
