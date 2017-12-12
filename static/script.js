@@ -1,7 +1,6 @@
-// Just a bit of code to get you started. Feel free to modify!
+//autocomplete function while typing
 console.log("website running");
 $('input').on('input', function() {
-    console.log("hello");
   $.ajax({
     method: 'post',
     url: '/query',
@@ -15,12 +14,13 @@ $('input').on('input', function() {
       $('.results').empty();
 
       results.forEach(function(result) {
-        var li = $('<li>').text(result);
+        var li = $('<p>').text(result.name + " " + result.score);
         $('.results').append(li);
       });
     });
 });
 
+//search function after pressing 'enter'
 $('input').on("keyup", function(e) {
   if (e.keyCode == 13) {
     $.ajax({
@@ -35,9 +35,9 @@ $('input').on("keyup", function(e) {
       .success(function(results) {
         $('.results').empty();
 
-        
-        results.forEach(function(result) {
-          var li = $('<li>').text(result);
+
+        results.forEach(function(results) {
+          var li = $('<p>').text(results.name + " " + results.score);
           $('.results').append(li);
         });
       });
