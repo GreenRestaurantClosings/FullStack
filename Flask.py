@@ -30,21 +30,28 @@ a = np.zeros((len(logisticData), 4))
 b = np.zeros((len(logisticData), 1))
 
 for element in range(len(logisticData)):
+    #setting initial values to -1 ensures that data points WITHOUT any of these attributes (a gap in data) do not skew the regression relation.
+    #a value of -1 ensures that these points are seen as completely extraneous, and thus the regression relation is unaffected by them.
     TAnumReviews = -1
     TARating = -1
     YelpRating = -1
     YNumReviews = -1
     if("Closed" in logisticData[element] and logisticData[element]["Closed"]):
         b[element] = 1
+        #sets the vector element = 1, which corresponds to CLOSED
     if("Trip Advisor Number of Reviews" in logisticData[element]):
+        #TA reviews was stored in the format "# reviews"
         temp = logisticData[element]["Trip Advisor Number of Reviews"].split(" ")
         TAnumReviews = int(temp[0])
     if("Trip Advisor Rating" in logisticData[element]):
+        #TA rating was stored in the format "# bubbles out of 5 bubbles". Words were separated at the space :)
         temp2 = logisticData[element]["Trip Advisor Rating"].split(" ")
         TARating = float(temp2[0])
     if("Yelp Rating" in logisticData[element]):
+        #Yelp rating was stored as a float
         YelpRating = logisticData[element]["Yelp Rating"]
     if("YelpNumReviews" in logisticData[element]):
+        #Yelp NumReviews was stored as an int
         YNumReviews = logisticData[element]["YelpNumReviews"]
 
     a[element] = [TAnumReviews, TARating, YelpRating, YNumReviews]
