@@ -26,7 +26,8 @@ for rest in restaurant_names.each():
 	#pull data from firebase, append to list
     logisticData.append(rest.val())
 
-a = np.zeros((len(logisticData), 4))
+"""a = np.zeros((len(logisticData), 4))"""
+a = np.zeros((len(logisticData), 6))
 b = np.zeros((len(logisticData), 1))
 
 for element in range(len(logisticData)):
@@ -36,6 +37,8 @@ for element in range(len(logisticData)):
     TARating = -1
     YelpRating = -1
     YNumReviews = -1
+    AvgHealthScore = -1
+    NumReports = -1
     if("Closed" in logisticData[element] and logisticData[element]["Closed"]):
         b[element] = 1
         #sets the vector element = 1, which corresponds to CLOSED
@@ -53,17 +56,24 @@ for element in range(len(logisticData)):
     if("YelpNumReviews" in logisticData[element]):
         #Yelp NumReviews was stored as an int
         YNumReviews = logisticData[element]["YelpNumReviews"]
+    if("Average Report Score" in logisticData[element]):
+        #Average score of all Health Inspections is stored as a float
+        AvgHealthScore = logisticData[element]["Average Report Score"]
+    if("Number of Reports" in logisticData[element]):
+        #Number of health inspections is stored as in int
+        NumReports = logisticData[element]["Number of Reports"]
 
-    a[element] = [TAnumReviews, TARating, YelpRating, YNumReviews]
+    a[element] = [TAnumReviews, TARating, YelpRating, YNumReviews, AvgHealthScore, NumReports]
 
 logreg = linear_model.LogisticRegression()
 logreg.fit(a, b)
 
 
 for i in range(len(logisticData)):
-	if type(logisticData[i]["Restaurant Name"]) == str:
-		score = logreg.predict_proba(a[i, :].reshape(1,-1))[0,1]
-		restaurants.append({"name":logisticData[i]["Restaurant Name"], "score": "%.2f%%" % round(score*100, 2)})
+    #print(logreg.predict_proba(a[i, :].reshape(1,-1)), logisticData[i]["Restaurant Name"])
+    if (type(logisticData[i]["Restaurant Name"]) == str):
+        score = logreg.predict_proba(a[i, :].reshape(1,-1))[0,1]
+        restaurants.append({"name":logisticData[i]["Restaurant Name"], "score": "%.2f%%" % round(score*100, 2)})
 
 
 def takeScore(elem):
