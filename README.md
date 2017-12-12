@@ -8,5 +8,5 @@ Team Members: Daniel Milgram, Kieran Kaempen, Suhirtha Raj , Susie Lee
 Project Manager: Osmar Coronel
 
 Instructions:
-1. $ pip install -r requirements.txt
+1. $ pip3 install -r requirements.txt
 2. $ python3 Flask.py
